@@ -1,0 +1,122 @@
+:root {
+  --bg: #f4efe7;
+  --bg-strong: #e8dccb;
+  --panel: rgba(255, 250, 244, 0.82);
+  --panel-strong: #fffaf3;
+  --border: rgba(91, 69, 48, 0.16);
+  --ink: #53453a;
+  --ink-strong: #2f241d;
+  --ink-muted: #746352;
+  --accent: #c6773a;
+  --accent-soft: rgba(198, 119, 58, 0.14);
+  --accent-strong: #9d5824;
+  --code-bg: #f1e7db;
+  --success: #4f7d61;
+  --shadow-soft: 0 18px 60px rgba(82, 56, 28, 0.1);
+  --shadow-note: 0 18px 40px rgba(88, 59, 35, 0.12);
+  --font-ui: 'Avenir Next', 'Pretendard', 'Noto Sans KR', sans-serif;
+  --font-display: 'Canela', 'Iowan Old Style', 'Noto Serif KR', serif;
+  --font-note: 'Iowan Old Style', 'Noto Serif KR', serif;
+  --font-mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.78), transparent 26%),
+    radial-gradient(circle at right 20%, rgba(198, 119, 58, 0.16), transparent 24%),
+    linear-gradient(180deg, #f7f1e8 0%, #efe4d5 100%);
+  font-family: var(--font-ui);
+  line-height: 1.6;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  inset: auto;
+  pointer-events: none;
+  z-index: -1;
+}
+
+body::before {
+  width: 360px;
+  height: 360px;
+  top: -120px;
+  right: -60px;
+  background: radial-gradient(circle, rgba(198, 119, 58, 0.18), transparent 65%);
+}
+
+body::after {
+  width: 280px;
+  height: 280px;
+  bottom: 5%;
+  left: -80px;
+  background: radial-gradient(circle, rgba(112, 140, 123, 0.18), transparent 65%);
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+code,
+pre {
+  font-family: var(--font-mono);
+}
+
+code {
+  padding: 0.15rem 0.4rem;
+  border-radius: 8px;
+  background: rgba(193, 163, 122, 0.16);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  color: var(--ink-strong);
+  line-height: 1.1;
+}
+
+h1 {
+  margin: 0 0 14px;
+  font-size: clamp(2.4rem, 3vw, 4rem);
+}
+
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-top: 0;
+}
+
+#root {
+  min-height: 100vh;
+}
