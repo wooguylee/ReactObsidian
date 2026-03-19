@@ -64,7 +64,7 @@ function parseScalar(value) {
   return trimmed.replace(/^['"]|['"]$/g, '')
 }
 
-function parseFrontmatter(markdown) {
+export function parseFrontmatter(markdown) {
   if (!markdown.startsWith('---\n')) {
     return { data: {}, content: markdown }
   }
