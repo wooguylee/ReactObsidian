@@ -16,13 +16,15 @@
   background: linear-gradient(180deg, rgba(255, 250, 244, 0.96), rgba(245, 236, 224, 0.88));
 }
 
-.obsidian-workspace__bar h2 {
+.obsidian-workspace__bar h2,
+.obsidian-dialog__header h3 {
   margin: 0 0 6px;
   font-size: 1.7rem;
 }
 
 .obsidian-workspace__bar span,
-.obsidian-workspace__eyebrow {
+.obsidian-workspace__eyebrow,
+.obsidian-dialog__header p {
   color: var(--ink-muted);
 }
 
@@ -35,14 +37,19 @@
 
 .obsidian-workspace__actions,
 .obsidian-editor-panel__toolbar,
-.obsidian-toolbar-group {
+.obsidian-toolbar-group,
+.obsidian-bubble-menu,
+.obsidian-table-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
 
 .obsidian-workspace button,
-.obsidian-editor-panel__toolbar button {
+.obsidian-editor-panel__toolbar button,
+.obsidian-dialog button,
+.obsidian-bubble-menu button,
+.obsidian-table-actions button {
   border: 1px solid rgba(91, 69, 48, 0.16);
   border-radius: 999px;
   background: rgba(255, 252, 247, 0.92);
@@ -53,13 +60,18 @@
 }
 
 .obsidian-workspace button:hover,
-.obsidian-editor-panel__toolbar button:hover {
+.obsidian-editor-panel__toolbar button:hover,
+.obsidian-dialog button:hover,
+.obsidian-bubble-menu button:hover,
+.obsidian-table-actions button:hover {
   transform: translateY(-1px);
   border-color: rgba(157, 88, 36, 0.4);
 }
 
 .obsidian-workspace button.is-accent,
-.obsidian-editor-panel__toolbar button.is-active {
+.obsidian-editor-panel__toolbar button.is-active,
+.obsidian-dialog button.is-accent,
+.obsidian-bubble-menu button.is-active {
   background: linear-gradient(135deg, #c6773a, #b05e25);
   color: #fff8ef;
   border-color: rgba(176, 94, 37, 0.55);
@@ -122,6 +134,7 @@
 }
 
 .obsidian-editor-stage {
+  position: relative;
   flex: 1;
   padding: 18px;
   background:
@@ -133,6 +146,23 @@
       transparent 1px,
       transparent 32px
     );
+}
+
+.obsidian-bubble-menu {
+  position: absolute;
+  z-index: 20;
+  transform: translateX(-50%);
+  padding: 10px;
+  border-radius: 999px;
+  background: rgba(47, 36, 29, 0.94);
+  box-shadow: 0 14px 30px rgba(28, 20, 14, 0.22);
+}
+
+.obsidian-bubble-menu button {
+  padding: 8px 12px;
+  background: transparent;
+  color: #fff6eb;
+  border-color: rgba(255, 255, 255, 0.14);
 }
 
 .obsidian-wysiwyg {
@@ -289,6 +319,7 @@
   padding: 12px 14px;
   border: 1px solid rgba(91, 69, 48, 0.12);
   text-align: left;
+  position: relative;
 }
 
 .obsidian-wysiwyg .selectedCell:after {
@@ -317,11 +348,12 @@
 }
 
 .obsidian-preview-panel__meta div,
-.obsidian-side-card {
+.obsidian-side-card,
+.obsidian-dialog {
   border: 1px solid rgba(91, 69, 48, 0.12);
   border-radius: 18px;
   padding: 14px;
-  background: rgba(255, 252, 247, 0.74);
+  background: rgba(255, 252, 247, 0.96);
 }
 
 .obsidian-preview-panel__meta strong {
@@ -343,6 +375,77 @@
   word-break: break-word;
   font-size: 0.82rem;
   line-height: 1.55;
+}
+
+.obsidian-dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(31, 24, 19, 0.4);
+  z-index: 60;
+}
+
+.obsidian-dialog {
+  width: min(520px, 100%);
+  padding: 20px;
+  box-shadow: 0 20px 60px rgba(31, 24, 19, 0.22);
+}
+
+.obsidian-dialog__header,
+.obsidian-dialog__footer {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.obsidian-dialog__body {
+  display: grid;
+  gap: 14px;
+  margin: 18px 0;
+}
+
+.obsidian-dialog__close {
+  min-width: 40px;
+}
+
+.obsidian-dialog__footer {
+  justify-content: flex-end;
+}
+
+.obsidian-field {
+  display: grid;
+  gap: 8px;
+}
+
+.obsidian-field span {
+  color: var(--ink-strong);
+  font-size: 0.92rem;
+}
+
+.obsidian-field input,
+.obsidian-field select {
+  width: 100%;
+  border: 1px solid rgba(91, 69, 48, 0.14);
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: rgba(255, 250, 244, 0.95);
+  color: var(--ink-strong);
+}
+
+.obsidian-field--checkbox {
+  grid-template-columns: auto 1fr;
+  align-items: center;
+}
+
+.obsidian-field--checkbox input {
+  width: auto;
+}
+
+.obsidian-table-actions {
+  gap: 12px;
 }
 
 @media (max-width: 1180px) {
@@ -368,7 +471,8 @@
   }
 
   .obsidian-editor-stage,
-  .obsidian-side-panel {
+  .obsidian-side-panel,
+  .obsidian-dialog-backdrop {
     padding: 14px;
   }
 

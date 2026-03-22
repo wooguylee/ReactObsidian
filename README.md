@@ -1,16 +1,88 @@
-# React + Vite
+# React Obsidian WYSIWYG
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Obsidian-friendly React editor module with live WYSIWYG editing, Markdown round-trip output, and JSON export helpers.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Live WYSIWYG editing surface instead of raw textarea editing
+- Selection bubble menu like blog editors
+- `[[wikilink]]` auto-conversion while typing
+- Dialog-based insert/edit flows for link, callout, image, and table
+- Markdown export compatible with core Obsidian-style content
+- Structured JSON parser for DB persistence
 
-## React Compiler
+## Install
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm install react-obsidian-wysiwyg
+```
 
-## Expanding the ESLint configuration
+Peer dependencies:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install react react-dom
+```
+
+## Usage
+
+```jsx
+import { useState } from 'react'
+import { ObsidianEditor, parseObsidianDocument } from 'react-obsidian-wysiwyg'
+
+const initialValue = `---
+title: Product Note
+tags:
+  - docs
+---
+
+# Product Note
+
+Type here and use the toolbar or bubble menu.`
+
+export default function Example() {
+  const [value, setValue] = useState(initialValue)
+  const parsed = parseObsidianDocument(value, {
+    documentPath: 'Vault/Product Note.md',
+  })
+
+  return (
+    <div>
+      <ObsidianEditor
+        value={value}
+        onChange={setValue}
+        documentPath="Vault/Product Note.md"
+      />
+
+      <pre>{JSON.stringify(parsed, null, 2)}</pre>
+    </div>
+  )
+}
+```
+
+## Exported API
+
+- `ObsidianEditor`
+- `parseObsidianDocument`
+- `parseFrontmatter`
+- `normalizeObsidianMarkdown`
+- `markdownToEditorHtml`
+- `editorHtmlToMarkdown`
+
+## Local development
+
+```bash
+npm install
+npm run dev
+```
+
+Build demo app:
+
+```bash
+npm run build
+```
+
+Build reusable library:
+
+```bash
+npm run build:lib
+```
