@@ -201,6 +201,14 @@ function applyCallout(editor, payload) {
   editor.chain().focus().updateAttributes('blockquote', attrs).run()
 }
 
+function removeCallout(editor) {
+  if (!editor.isActive('blockquote')) {
+    return
+  }
+
+  editor.chain().focus().toggleBlockquote().run()
+}
+
 function applyTable(editor, payload) {
   if (editor.isActive('table')) {
     return
@@ -652,9 +660,14 @@ export function ObsidianEditor({
         title="Configure Callout"
         description="Turn the current block into an Obsidian-style callout with type and title."
         confirmLabel="Apply Callout"
+        secondaryLabel={editor.isActive('blockquote') ? 'Plain Text' : undefined}
         onClose={() => setDialogState(DEFAULT_DIALOG_STATE)}
         onConfirm={() => {
           applyCallout(editor, dialogState.payload)
+          setDialogState(DEFAULT_DIALOG_STATE)
+        }}
+        onSecondaryAction={() => {
+          removeCallout(editor)
           setDialogState(DEFAULT_DIALOG_STATE)
         }}
       >

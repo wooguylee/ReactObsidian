@@ -4,7 +4,9 @@ export function EditorDialog({
   description,
   children,
   confirmLabel = 'Apply',
+  secondaryLabel,
   onConfirm,
+  onSecondaryAction,
   onClose,
 }) {
   if (!open) {
@@ -34,6 +36,11 @@ export function EditorDialog({
         <div className="obsidian-dialog__body">{children}</div>
 
         <div className="obsidian-dialog__footer">
+          {secondaryLabel && onSecondaryAction ? (
+            <button type="button" onClick={onSecondaryAction}>
+              {secondaryLabel}
+            </button>
+          ) : null}
           <button type="button" onClick={onClose}>
             Cancel
           </button>
